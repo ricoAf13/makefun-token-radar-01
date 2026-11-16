@@ -26,8 +26,7 @@
     if (days >= 365) return (days / 365).toFixed(1) + 'y';
     return Math.max(0, Math.round(days)) + 'd';
   }
-  // The model in one function: the page recomputes a row from the snapshot figures and checks the
-  // number board.json carries, so the page's code and the board's data are visibly the same arithmetic.
+
   function impliedOf(row, model) {
     var growth = Math.min(model.growth_cap, Math.max(model.growth_floor, row.change_7d === null || row.change_7d === undefined ? 0 : row.change_7d));
     var growthMult = 1 + (growth / 100) * model.growth_weight;
@@ -57,8 +56,6 @@
     return node;
   }
 
-  // The farm plan is the same derivation main.ts writes to board.json: category, chains, TVL and age
-  // decide the action, the capital, the hold and every cost and time. No name is special-cased.
   function chainOf(p) { return p.chains && p.chains.length > 0 ? p.chains[0] : 'its main chain'; }
   function capitalFor(p) {
     if (p.tvl_usd >= 5e9) return 250;
@@ -151,7 +148,7 @@
 
   function header() {
     return el('header', { class: 'top' },
-      el('div', { class: 'brand' }, el('span', { class: 'mark' }), el('span', { class: 'brand-name', text: 'Token Radar' })),
+      el('div', { class: 'brand' }, el('span', { class: 'mark' }), el('span', { class: 'brand-name', text: 'Vanguard Token Radar' })),
       el('div', { class: 'top-meta' },
         el('span', { text: 'Snapshot ' + DATA.as_of }),
         el('span', { text: 'DefiLlama protocol index' }),
@@ -164,7 +161,7 @@
     return el('section', { class: 'lede' },
       el('div', null,
         el('h1', { text: DATA.watchlist_size + ' watchlist protocols, ranked by implied value' }),
-        el('p', { text: 'The watchlist is the floor: every protocol with at least $' + Math.round(DATA.floor_usd / 1e6) + 'M of TVL and no token on record. The early radar adds ' + DATA.early_size + ' pre-token protocols below that floor. Implied value is a model, not a promise.' })
+        el('p', { text: 'The watchlist is the floor: every protocol with at least $' + Math.round(DATA.floor_usd / 1e6) + 'M of TVL and no token on record. The early radar adds ' + DATA.early_size + ' pre-token protocols below that floor. Implied value is a quantitative estimate.' })
       ),
       el('div', { class: 'facts' },
         el('div', { class: 'fact' }, el('span', { text: 'Watchlist covered' }), el('b', { text: DATA.watchlist_size + ' / ' + DATA.watchlist_size })),

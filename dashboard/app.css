@@ -1,5 +1,4 @@
-/* Token Radar's plain theme. The five palette values, two radii and two families are the whole style;
-   everything else is spacing, a hairline and a type step. */
+/* Vanguard Token Radar Theme: clean, high-contrast financial typography */
 :root {
   --canvas: #f2f5f3;
   --surface: #ffffff;
